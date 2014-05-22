@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chainhelen</title>
+		<link rel='stylesheet' href='/stylesheets/style.css' />
+		<style>
+			body{
+				background-color:#10A296;
+			}
+			.title{
+				color:white;
+				font-size:4em;
+			}
+			h1{
+				color:white;
+				letter-spacing: 8px;
+			}
+			.hide{
+				opacity: 0;	
+			}
+		</style>
+		<script src="javascripts/jquery.js"></script>
+		<script src="javascripts/spin.js"></script>
+		<script>
+			$(document).ready(function(){
+				var opts = {
+				  lines: 17, // The number of lines to draw
+				  length: 40, // The length of each line
+				  width: 6, // The line thickness
+				  radius: 60, // The radius of the inner circle
+				  corners: 1, // Corner roundness (0..1)
+				  rotate: 90, // The rotation offset
+				  direction: 1, // 1: clockwise, -1: counterclockwise
+				  color: 'rgb(248,148,148)', // #rgb or #rrggbb or array of colors
+				  speed: 2.2, // Rounds per second
+				  trail: 100, // Afterglow percentage
+				  shadow: false, // Whether to render a shadow
+				  hwaccel: true, // Whether to use hardware acceleration
+				  className: 'spinner', // The CSS class to assign to the spinner
+				  zIndex: 2e9, // The z-index (defaults to 2000000000)
+				  top: '50%', // Top position relative to parent
+				  left: '50%' // Left position relative to parent
+				};
+				var target = document.getElementById('foo');
+				$("button").click(function(){
+						var spinner = new Spinner(opts).spin(target);
+				})
+			})
+		</script>
+  </head>
+  <body>
+		<h1 class="title"><%= title %></h1>
+		<h1><%= think %></h1>
+		<div id="foo"></div>
+		<form class="hide" method="post">
+				<label class="control-label" for="username">用户名</label>
+				<input type="text" name="username" value="admin">
+				<label for="password">密码</label>
+				<input type="password" name="password" value="admin">
+				<button type="submit">登陆</button>
+		</form>
+  </body>
+</html>
