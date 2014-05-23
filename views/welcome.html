@@ -46,10 +46,10 @@
 					function () {$(".bg h1").html("Welcome to My'world");next()},
 					function () {$(".bg h1").fadeIn(2000, next);},
 					function () {$(".arrow").css({"-webkit-transform": "rotate(720deg) scale(0.1)"});
-												$(".arrow").css({"opacity":0});setTimeout(function(){next()},2000);},
+												$(".arrow").css({"opacity":0});setTimeout(function(){next()},800);},
 					function() {$(".arrow").css({"top":-500,"opacity":1});
-												$(".bg h1").html("Name: 钱海龙</br>EnglishName:Chainhelen")},
-					//function() {$(".arrow").}
+												$(".bg h1").html("Name: Chainhelen");next()},
+					function() {$(".arrow").animate({"top":250},1500);$(".arrow").css({"-webkit-transform":"scale(1.5)"})}
 			]
 
 				$(document).queue("first", FUNC);
