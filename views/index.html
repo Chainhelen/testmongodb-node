@@ -38,12 +38,35 @@
 		<script src="javascripts/jquery.js"></script>
 		<script>
 			$(document).ready(function(){
+
 				$("button").click(function(){
 					$(".container").css({"z-index":1});
 					$(".loader-container").html("<div class='loader'>Loading...</div>");
 					$(".loader").css({"opacity":1});
 				})
-			})
+
+				$("#togglepassword").click(function(){
+					if($("#togglepassword")[0].value == "显示密码"){
+						$("#pass").css({"display":"none"});
+						$("#showpass").css({"display":""});
+						$("#showpass")[0].value = $("#pass")[0].value;
+						$("#togglepassword")[0].value = "隐藏密码";
+					}
+					else if($("#togglepassword")[0].value == "隐藏密码"){
+						$("#pass").css({"display":""});
+						$("#showpass").css({"display":"none"});
+						$("#pass")[0].value = $("#showpass")[0].value;
+						$("#togglepassword")[0].value = "显示密码";
+					}
+				});
+			});
+			function submitFunc(){
+				console.log("ni");
+					if($("#togglepassword")[0].value == "隐藏密码"){
+						$("#pass")[0].value = $("#showpass")[0].value;
+					}
+					return true;
+				}
 		</script>
   </head>
   <body>
@@ -54,12 +77,15 @@
 		</div>
 		<h1><%= think %></h1>
 		<div id="foo"></div>
-		<form class="hide" method="post">
-				<label class="control-label" for="username">用户名</label>
+		<form class="hide" method="post" onsubmit="return submitFunc()">
+				<label for="username">用户名</label>
 				<input type="text" name="username" value="admin">
 				<label for="password">密码</label>
-				<input type="password" name="password" value="admin">
-				<button type="submit">登陆</button>
+				<input id="pass" type="password" name="password" value="admin" style="display:">
+				<input id="showpass" type="text" value="admin" style="display:none">
+
+				<button type="submit" id="submit">登陆</button>
+				<input type="button" value="显示密码" id="togglepassword"></input>
 		</form>
   </body>
 </html>

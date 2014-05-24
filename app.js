@@ -27,10 +27,10 @@ app.use(express.methodOverride());
 
 app.use(express.cookieParser());
 app.use(express.cookieSession({
-	secret: 'fens.me'
+	secret: 'chain'
 }));
 app.use(express.session({
-	secret: 'fens.me',
+	secret: 'chain',
 	store: new SessionStore({
 		url: "mongodb://root:root@ds051838.mongolab.com:51838/cookie",
 		interval: 120000
@@ -52,11 +52,11 @@ if ('development' == app.get('env')) {
 	app.use(express.errorHandler());
 }
 
+app.get(/\/\S+/,routes.indexAuth);
 app.get('/', routes.indexone);
-app.get('/*',routes.indexAuth);
 app.post('/',routes.indexpost);
 
-app.get('/users', user.list);
+app.get('/welcom', user.list);
 app.get('/*', routes.zero);
 
 http.createServer(app).listen(app.get('port'), function() {

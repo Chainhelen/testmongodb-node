@@ -2,11 +2,18 @@
  * GET home page.
  */
 exports.indexone = function(req, res) {
-	req.session.user = null;
-	res.render('index', {
-		title: 'Welcome',
-		think: '猜猜怎么才能进入该网站'
-	});
+	if (!req.session.user) {
+		res.render('index', {
+			title: 'Welcome',
+			think: '猜猜怎么才能进入该网站'
+		});
+	} else {
+		req.session.user = null;
+		res.render('index', {
+			title: 'Logout',
+			think: '哎哟，又来一遍'
+		})
+	}
 };
 
 exports.indexpost = function(req, res) {
@@ -22,25 +29,26 @@ exports.indexpost = function(req, res) {
 
 		if (req.body.username == user.username && req.body.password == user.password) {
 			req.session.user = user;
-			res.redirect('/users');
+			res.redirect('/welcome');
 		}
 
 		res.render('index', {
 			title: 'ERROR',
-			think: '错了,错了,不要乱该密码或者用户啊!'
+			think: '错了,错了,不要乱改密码或者用户啊!'
 		});
 	});
 }
 exports.indexAuth = function(req, res, next) {
-	console.log("user;" + req.session.user);
-	if(!res.locals.user){
-		res.render('index',{
+	if (!res.locals.user) {
+		res.render('autherr', {
 			title: 'ERROR',
 			think: '错了，错了，不要乱试'
 		})
+		return;
 	}
 	next();
 }
-exports.zero = function(req, res, next){
+exports.zero = function(req, res, next) {
 	res.send('404');
 }
+
