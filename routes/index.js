@@ -4,6 +4,7 @@
 exports.indexone = function(req, res) {
 	if (!req.session.user) {
 		res.render('index', {
+			user: 'ni',
 			title: 'Welcome',
 			think: '猜猜怎么才能进入该网站'
 		});
