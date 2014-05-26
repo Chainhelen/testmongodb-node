@@ -56,7 +56,7 @@ app.get(/\/\S+/,routes.indexAuth);
 app.get('/', routes.indexone);
 app.post('/',routes.indexpost);
 
-app.get('/welcom', user.list);
+app.get('/welcome', user.list);
 app.get('/*', routes.zero);
 
 http.createServer(app).listen(app.get('port'), function() {
