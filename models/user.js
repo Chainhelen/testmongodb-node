@@ -1,4 +1,7 @@
 var db = require('./db');
+var bcrypt = require('bcrypt');
+var SALT = 10;
+
 var Schema = db.mongoose.Schema;
 var userSchema = new Schema({
 	username: String,

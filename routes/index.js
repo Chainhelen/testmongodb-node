@@ -19,6 +19,9 @@ exports.indexone = function(req, res) {
 
 exports.indexpost = function(req, res) {
 	var User = require('../models/user');
+	var bcrypt = require('bcrypt');
+	var SALT_WORK_FACTOR = 10;
+
 	var user = {};
 	User.findByName(req.body.username, function(err, obj) {
 		if (err) {
@@ -27,6 +30,14 @@ exports.indexpost = function(req, res) {
 		console.log(obj.password);
 		user["username"] = req.body.username;
 		user["password"] = obj.password;
+		
+    bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
+        bcrypt.hash(req.body.password, salt, function(err, hash) {
+            req.body.password = hash;
+						console.log("+++" + req.body.password);
+        });
+    });
+		console.log("ni" + req.body.password);
 
 		if (req.body.username == user.username && req.body.password == user.password) {
 			req.session.user = user;

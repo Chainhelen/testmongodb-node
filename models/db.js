@@ -3,10 +3,10 @@ var dbURL = 'mongodb://admin:root@ds029257.mongolab.com:29257/blog';
 mongoose.connect(dbURL);
 
 console.log('Mongoose connected on' + dbURL);
-/*
+
 mongoose.connection.on('error', function(err) {
 	console.log('Mongoose connection error: ' + err);
-});
+});/*
 mongoose.connection.on('disconnected', function() {
 	console.log('Mongoose disconnected');
 });
